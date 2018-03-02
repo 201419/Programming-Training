@@ -4,4 +4,6 @@
 
 C++ : http://www.cplusplus.com/
 
-试题来源：[牛客网](https://www.nowcoder.net/activity/oj)、 [LeetCode](https://leetcode.com/problemset/algorithms/)
+试题来源：[牛客网](https://www.nowcoder.net/activity/oj)、 [LeetCode](https://leetcode.com/problemset/algorithms/)、[LintCode](http://www.lintcode.com/)
+
+[PAT|计算机程序设计能力考试](https://www.patest.cn/)
