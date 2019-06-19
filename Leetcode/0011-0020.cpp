@@ -206,3 +206,33 @@ public:
 // https://leetcode-cn.com/problems/valid-parentheses/
 // 20. 有效的括号
 
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> a;
+        a.push('0');
+        
+        for (int i = 0; i < s.size(); i++) {
+            switch (s[i]) {
+                case '}':
+                    if (a.top() == '{')  a.pop();
+                    else  return false;
+                    break;
+                case ')':
+                    if (a.top() == '(')  a.pop();
+                    else  return false;
+                    break;
+                case ']':
+                    if (a.top() == '[')  a.pop();
+                    else  return false;
+                    break;
+                default:
+                    a.push(s[i]);
+                    break;
+            }
+        }
+        
+        if (a.top() == '0')  return true;
+        else  return false;
+    }
+};
