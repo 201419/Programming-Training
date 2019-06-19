@@ -96,10 +96,64 @@ public:
 // https://leetcode-cn.com/problems/3sum-closest/
 // 16. 最接近的三数之和
 
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        sort(nums.begin(), nums.end());
+        
+        int len = nums.size();
+        int i = 0, j = 1, k = len - 1;
+        int res = nums[i] + nums[j] + nums[k];
+        
+        for (; i < len - 2; i++) {
+            j = i + 1, k = len - 1;
+            while (j < k) {
+                res = abs(res-target) < abs(nums[i]+nums[j]+nums[k]-target) ? res : nums[i]+nums[j]+nums[k];
+            
+                if (nums[i] + nums[j] + nums[k] > target) k--;
+                else if (nums[i] + nums[j] + nums[k] < target) j++;
+                else return target;
+            }
+        }
+        return res;
+    }
+};
+
 // ---------------------------------------------------------------------------
 
 // https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/
 // 17. 电话号码的字母组合
+
+class Solution {
+public:
+    vector<string> tab={"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    
+    vector<string> letterCombinations(string digits) {
+        int len = digits.size();
+        if (len == 0) return {};
+        
+        vector<string> res;
+        string path;
+        dfs(res, digits, 0, path);
+        
+        return res;
+    }
+    
+    void dfs(vector<string>& res, string digits, int di, string path) {
+        if (di == digits.size()) res.push_back(path);
+        else {
+            int num = digits[di] - '0';
+            for (int ti = 0; ti < tab[num].size(); ti++) {
+                path.push_back(tab[num][ti]);
+                di++;
+                dfs(res, digits, di, path);
+                di--;
+                path.pop_back();
+            }
+        }
+    }
+    
+};
 
 // ---------------------------------------------------------------------------
 
