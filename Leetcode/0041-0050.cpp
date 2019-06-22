@@ -115,24 +115,53 @@ public:
 
 // ---------------------------------------------------------------------------
 
-// 46.
+// https://leetcode-cn.com/problems/permutations/
+// 46. 全排列
 
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> result;
+        permutationrecusive(nums, 0, result);
+        return result;
+    }
+    
+    void permutationrecusive(vector<int>& nums, int k, vector<vector<int>>& result) {
+        if (k == nums.size() - 1) {
+            result.push_back(nums);
+            return ;
+        }
+        for (int i = k; i < nums.size(); i++) {
+            for (int j = i; j > k; j--) {
+                swap(nums[j], nums[j-1]);
+            }
+            // swap(nums[k], nums[i]);
+            permutationrecusive(nums, k+1, result);
+            for (int j = k; j < i; j++) {
+                swap(nums[j], nums[j+1]);
+            }
+            // swap(nums[k], nums[i]);
+        }
+    }  
+};
 
 // ---------------------------------------------------------------------------
 
-// 47.
+// https://leetcode-cn.com/problems/permutations-ii/
+// 47. 全排列 II
 
 // ---------------------------------------------------------------------------
 
-// 48.
-
-
-// ---------------------------------------------------------------------------
-
-// 49.
-
+// https://leetcode-cn.com/problems/rotate-image/
+// 48. 旋转图像
 
 // ---------------------------------------------------------------------------
 
-// 50.
+// https://leetcode-cn.com/problems/group-anagrams/
+// 49. 字母异位词分组
+
+// ---------------------------------------------------------------------------
+
+// https://leetcode-cn.com/problems/powx-n/
+// 50. Pow(x, n)
 
