@@ -60,7 +60,21 @@ public:
 // https://leetcode-cn.com/problems/plus-one/
 // 66. 加一
 
-
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        for (int i = digits.size() - 1; i >= 0; i--) {
+            if (digits[i] != 9) {
+                digits[i]++;
+                break;
+            } else {
+                digits[i] = 0;
+                if (i == 0) digits.insert(digits.begin(), 1);
+            }
+        }
+        return digits;
+    }
+};
 
 // ---------------------------------------------------------------------------
 
@@ -76,5 +90,56 @@ public:
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/sqrtx/
+// 69. x 的平方根
+
+class Solution {
+public:
+    int mySqrt(int x) {
+        if (x <= 1) return x;
+        // https://en.wikipedia.org/wiki/Integer_square_root#Using_only_integer_division
+        long r = x;
+        while (r > x / r) {
+            r = (r + x / r) / 2;
+        }
+        return r;
+    }
+};
+
+// 另一种解法
+
+class Solution {
+public:
+    int mySqrt(int x) {
+        if (x <= 1) return x;
+        // https://en.wikipedia.org/wiki/Integer_square_root#Using_only_integer_division
+        
+        int smallCandidate = mySqrt(x >> 2) << 1;
+        int largeCandidate = smallCandidate + 1;
+        if (largeCandidate > (x / largeCandidate)) return smallCandidate;
+        else return largeCandidate;
+    }
+};
 
 // ---------------------------------------------------------------------------
+
+// https://leetcode-cn.com/problems/climbing-stairs/
+// 70. 爬楼梯
+
+class Solution {
+public:
+    int climbStairs(int n) {
+        if (n <= 1)  return 1;
+        else if (n == 2)  return 2;
+        else {
+            int result = 0;
+            int i = 1, j = 2;
+            while (n-- > 2) {
+                result = i + j;
+                i = j;
+                j = result;
+            }
+            return result;
+        }
+    }
+};
