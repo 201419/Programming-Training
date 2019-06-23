@@ -49,11 +49,57 @@ public:
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/spiral-matrix/
+// 54. 螺旋矩阵
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        
+        vector<int> result;
+        if (matrix.empty()) return result;
+        
+        int i1 = 0, j1 = 0, i2 = matrix.size() - 1, j2 = matrix[0].size() - 1;
+        while (i1 <= i2 && j1 <= j2) {
+            
+            for (int col = j1; col <= j2; col++) result.push_back(matrix[i1][col]);
+            for (int row = i1 + 1; row <= i2; row++) result.push_back(matrix[row][j2]);
+            
+            if (i1 < i2 && j1 < j2) {
+                for (int col = j2 - 1; col >= j1 + 1; --col) result.push_back(matrix[i2][col]);
+                for (int row = i2; row >= i1 + 1; --row) result.push_back(matrix[row][j1]);
+            }
+            
+            ++i1; ++j1;
+            --i2; --j2;
+        }
+        return result;
+    }
+};
 
 // ---------------------------------------------------------------------------
 
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/spiral-matrix-ii/submissions/
+// 59. 螺旋矩阵 II
+
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>> matrix(n, vector<int>(n, 0));
+        int index = 1, row = 0;
+        while (index <= n * n) {
+            for (int i = row; i < n - row; ++i) matrix[row][i] = index++;
+            for (int i = row + 1; i < n - row; ++i) matrix[i][n-row-1] = index++;
+            for (int i = n - row - 2; i > row; --i) matrix[n-row-1][i] = index++;
+            for (int i = n - row - 1; i > row; --i) matrix[i][row] = index++;
+            ++row;
+        }
+        return matrix;
+    }
+};
 
 // ---------------------------------------------------------------------------
+
