@@ -45,9 +45,36 @@ private:
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/contains-duplicate/
+// 217. 存在重复元素
+
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_set<int> s;
+        for (auto num : nums) {
+            if (s.find(num) != s.end())  return true;
+            s.insert(num);
+        }
+        return false;
+    }
+};
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/contains-duplicate-ii/
+// 219. 存在重复元素 II
+
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        unordered_map<int, int> map;
+        for (int i = 0; i < nums.size(); map[nums[i]] = i, i++) {
+            if (map.find(nums[i]) != map.end() && i - map[nums[i]] <= k) return true;
+        }
+        return false;
+    }
+};
 
 // ---------------------------------------------------------------------------
 
