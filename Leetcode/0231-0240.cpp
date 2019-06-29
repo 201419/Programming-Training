@@ -82,12 +82,78 @@ public:
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
+// 236. 二叉树的最近公共祖先
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (root == NULL || root == p || root == q) return root;
+        
+        TreeNode *left = lowestCommonAncestor(root->left, p, q);
+        TreeNode *right = lowestCommonAncestor(root->right, p, q);
+        
+        if (left != NULL && right != NULL) return root;
+        else if (left != NULL) return left;
+        else if (right != NULL) return right;
+        else return NULL;
+    }
+};
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/delete-node-in-a-linked-list/
+// 237. 删除链表中的节点
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        node->val = node->next->val;
+        node->next = node->next->next;
+    }
+};
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/product-of-array-except-self/
+// 238. 除自身以外数组的乘积
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int length = nums.size();
+        
+        vector<int> result(length, 1);
+        
+        for (int i = 0, left = 1; i < length; i++) {
+            result[i] = left;
+            left *= nums[i];
+        }
+        for (int i = length-1, right = 1; i >= 0; i--) {
+            result[i] *= right;
+            right *= nums[i];
+        }
+        
+        return result;
+    }
+};
 
 // ---------------------------------------------------------------------------
 
