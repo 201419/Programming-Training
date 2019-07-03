@@ -68,6 +68,46 @@ public:
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/reverse-linked-list/
+// 206. 反转链表
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (head == NULL || head->next == NULL)  return head;
+        /*
+        ListNode *p, *q, *r;
+        p = head;
+        q = p->next;
+        head->next = NULL;
+        while (q != NULL) {
+            r = q->next;
+            q->next = p;
+            p = q;
+            q = r;
+        }
+        return p;*/
+        
+        ListNode *p;
+        p = reverseList(head->next);
+        head->next->next = head;
+        head->next = NULL;
+        return p;
+    }
+};
+
+// ---------------------------------------------------------------------------
+
+// https://leetcode-cn.com/problems/course-schedule/
+// 207. 课程表
 
 // ---------------------------------------------------------------------------
 
@@ -77,5 +117,5 @@ public:
 
 // ---------------------------------------------------------------------------
 
-
-// ---------------------------------------------------------------------------
+// https://leetcode-cn.com/problems/course-schedule-ii/
+// 210. 课程表 II
