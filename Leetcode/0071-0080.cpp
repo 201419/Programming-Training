@@ -69,22 +69,78 @@ public:
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/set-matrix-zeroes/
+// 73. 矩阵置零
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/search-a-2d-matrix/
+// 74. 搜索二维矩阵
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/sort-colors/
+// 75. 颜色分类
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/minimum-window-substring/
+// 76. 最小覆盖子串
 
 // ---------------------------------------------------------------------------
 
-
+// https://leetcode-cn.com/problems/combinations/
+// 77. 组合
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/subsets/
+// 78. 子集
+
+class Solution {
+public:
+    //回溯法
+    vector<vector<int>> res;
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int> vec;
+        backtrade(nums, vec, 0);
+        return res;
+    }
+    
+    void backtrade(vector<int>& nums, vector<int> vec, int pos) {
+        res.push_back(vec);
+        
+        for(int i=pos; i<nums.size(); i++) {
+            vec.push_back(nums[i]);
+            backtrade(nums,vec,i+1);
+            //回溯到上一个状态
+            vec.pop_back();
+        }
+    }
+};
+
+// other method
+
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> result;
+        result.push_back({});
+        int size = nums.size();
+        int subsize = pow(2, size);
+        int hash = 1;
+        while (hash < subsize) {
+            vector<int> temp;
+            for (int k = 0; k < size; k++) {
+                int a = 1<<k;
+                if (a & hash) temp.push_back(nums[k]);
+            }
+            result.push_back(temp);
+            hash++;
+        }
+        return result;
+    }
+};
 
 // ---------------------------------------------------------------------------
 
