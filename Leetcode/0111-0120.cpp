@@ -76,6 +76,44 @@ public:
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/pascals-triangle-ii/
+// 119. 杨辉三角 II
 
+// 执行用时 : 0 ms , 在所有 C++ 提交中击败了 100.00% 的用户
+// 内存消耗 : 8.4 MB , 在所有 C++ 提交中击败了 63.08% 的用户
+
+//第 n 行的第 k 个数字为组合数 C_{n-1}^{k-1}}
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> res(rowIndex+1);
+        long int cur = 1;
+        for(int i=0; i<=rowIndex; i++){
+            res[i] = ((int)cur);
+            cur = cur * (rowIndex-i) / (i+1);  
+        }
+        return res;
+    }
+};
+
+// other method 
+
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> result(rowIndex+1);
+        for (int i = 0; i <= rowIndex; i++) {
+            for (int j = i; j >= 0; j--) {
+                if (j == 0) result[j] = 1;
+                else if (j == i) result[j] = 1;
+                else result[j] = result[j-1] + result[j];
+            }
+        }
+        return result;
+    }
+};
 
 // ---------------------------------------------------------------------------
+
+// https://leetcode-cn.com/problems/triangle/
+// 120. 三角形最小路径和
