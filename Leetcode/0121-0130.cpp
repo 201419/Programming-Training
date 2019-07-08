@@ -40,25 +40,71 @@ public:
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/
+// 124. 二叉树中的最大路径和
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+    int result = INT_MIN;
+public:
+    int maxPathSum(TreeNode* root) {
+        if (root == NULL) return NULL;
+        
+        maxValue(root);
+        return result;
+    }
+    
+    int maxValue(TreeNode* root) {
+        
+        int left = -1, right = -1;
+        
+        if (root->left != NULL) left = maxValue(root->left);
+        if (root->right != NULL) right = maxValue(root->right);
+        
+        int ret = max(root->val, max(root->val+left, root->val+right));
+        
+        int maxVal = max(ret, root->val+left+right);
+        
+        result = max(result, maxVal);
+        
+        return ret;
+    }
+};
 
 // ---------------------------------------------------------------------------
 
-
-
-// ---------------------------------------------------------------------------
-
+// https://leetcode-cn.com/problems/valid-palindrome/
+// 125. 验证回文串
 
 // ---------------------------------------------------------------------------
 
-
-
-// ---------------------------------------------------------------------------
-
-
+// https://leetcode-cn.com/problems/word-ladder-ii/
+// 126. 单词接龙 II
 
 // ---------------------------------------------------------------------------
 
-
+// https://leetcode-cn.com/problems/word-ladder/
+// 127. 单词接龙
 
 // ---------------------------------------------------------------------------
+
+// https://leetcode-cn.com/problems/longest-consecutive-sequence/
+// 128. 最长连续序列
+
+// ---------------------------------------------------------------------------
+
+// https://leetcode-cn.com/problems/sum-root-to-leaf-numbers/
+// 129. 求根到叶子节点数字之和
+
+// ---------------------------------------------------------------------------
+
+// https://leetcode-cn.com/problems/surrounded-regions/
+// 130. 被围绕的区域
