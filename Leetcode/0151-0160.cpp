@@ -152,20 +152,48 @@ public:
 
 // ---------------------------------------------------------------------------
 
-
-
-// ---------------------------------------------------------------------------
-
-
+// https://leetcode-cn.com/problems/binary-tree-upside-down/
+// 156. 上下翻转二叉树
 
 // ---------------------------------------------------------------------------
 
-
-
-// ---------------------------------------------------------------------------
-
-
+// https://leetcode-cn.com/problems/read-n-characters-given-read4/
+// 157. 用 Read4 读取 N 个字符
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/read-n-characters-given-read4-ii-call-multiple-times/
+// 158. 用 Read4 读取 N 个字符 II
 
+// ---------------------------------------------------------------------------
+
+// https://leetcode-cn.com/problems/longest-substring-with-at-most-two-distinct-characters/
+// 159. 至多包含两个不同字符的最长子串
+
+// ---------------------------------------------------------------------------
+
+// https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
+// 160. 相交链表
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if (headA == NULL || headB == NULL)  return NULL;
+        ListNode *pA, *pB;
+        pA = headA;
+        pB = headB;
+        while (pA != pB) {
+            pA = (pA == NULL ? headB : pA->next);
+            pB = (pB == NULL ? headA : pB->next);
+        }
+        return pA;
+    }
+};
