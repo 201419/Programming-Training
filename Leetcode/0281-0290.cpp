@@ -37,6 +37,37 @@
 // https://leetcode-cn.com/problems/unique-word-abbreviation/
 // 288. 单词的唯一缩写
 
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        for (int i = 0, j = 0; i < nums.size(); i++) {
+            if (nums[i] != 0) {
+                if (i != j) {
+                    nums[j] = nums[i];
+                    nums[i] = 0;
+                }
+                j++;
+            }
+        }
+    }
+};
+
+// other method
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int idx = 0;
+        for (int i = 0; i < nums.size(); ++i){
+            if (nums[i] != 0) //move
+                nums[idx++] = nums[i];
+        }
+        while (idx < nums.size()){
+            nums[idx++] = 0;
+        }
+    }
+};
+
 // ---------------------------------------------------------------------------
 
 // https://leetcode-cn.com/problems/game-of-life/
