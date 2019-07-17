@@ -1,9 +1,26 @@
-
-
+// https://leetcode-cn.com/problems/word-pattern-ii/
+// 291. 单词规律 II
 
 // ---------------------------------------------------------------------------
 
+// https://leetcode-cn.com/problems/nim-game/
+// 292. Nim 游戏
 
+class Solution {
+public:
+    bool canWinNim(int n) {
+        return (n % 4 != 0);
+    }
+};
+
+// other method
+
+class Solution {
+public:
+    bool canWinNim(int n) {
+        return (n%4)?true:false;
+    }
+};
 
 // ---------------------------------------------------------------------------
 
