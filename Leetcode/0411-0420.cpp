@@ -20,6 +20,31 @@
 // https://leetcode-cn.com/problems/third-maximum-number/
 // 414. 第三大的数
 
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+        if (nums.size() == 1) return nums[0];
+        else if (nums.size() == 2) return (nums[0] > nums[1] ? nums[0] : nums[1]);
+        else {
+            vector<int> result(3, INT_MIN);
+            result[0] = nums[0];
+            bool flag = (result[0] == INT_MIN ? true : false);
+            for (int i = 1; i < nums.size(); i++) {
+                if (nums[i] == INT_MIN) flag = true;
+                if (nums[i] > result[0]) {
+                    result.insert(result.begin(), nums[i]);
+                } else if (nums[i] > result[1] && nums[i] != result[0]) {
+                    result.insert(1+result.begin(), nums[i]);
+                } else if (nums[i] > result[2] && nums[i] != result[0] && nums[i] != result[1]) {
+                    result.insert(2+result.begin(), nums[i]);
+                }
+                result.resize(3);
+            }
+            if ((flag && result[1] != INT_MIN) || result[2] != INT_MIN) return result[2];
+            else return result[0];
+        }
+    }
+};
 
 // ---------------------------------------------------------------------------
 
