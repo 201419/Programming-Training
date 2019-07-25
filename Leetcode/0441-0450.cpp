@@ -44,6 +44,19 @@
 // https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/
 // 448. 找到所有数组中消失的数字
 
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        for (int i = 0; i < nums.size(); i++) {
+            nums[abs(nums[i]) - 1] = -abs(nums[abs(nums[i]) - 1]);
+        }
+        vector<int> result;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] > 0) result.push_back(i + 1);
+        }
+        return result;
+    }
+};
 
 // ---------------------------------------------------------------------------
 
