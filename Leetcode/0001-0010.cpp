@@ -80,7 +80,7 @@ public:
         vector<int> dict(256, -1);
         int maxLen = 0, start = -1;
         for (int i = 0; i != s.length(); i++) {
-            if (dict[s[i]] > start)
+            if (dict[s[i]] > start)  // 上次出现的下标大于当前长度的起始下标
                 start = dict[s[i]];
             dict[s[i]] = i;
             maxLen = max(maxLen, i - start);
