@@ -203,7 +203,7 @@ public:
         if (n == 0) return 0;
         
         int i = 0, sign = 1;
-        while (i + 1 < n && isspace(str[i])) ++i;
+        while (i < n && isspace(str[i])) ++i;
         if (i == n) return 0;
         
         long result = 0;
