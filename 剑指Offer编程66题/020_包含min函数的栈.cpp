@@ -2,7 +2,7 @@ class Solution {
 public:
     void push(int value) {
         sta.push(value);
-        if(staMin.empty()||staMin.top()>value) staMin.push(value);  // if语句短路判断
+        if(staMin.empty()||staMin.top()>=value) staMin.push(value);  // if语句短路判断 & 注意等号
     }
     void pop() {
         if(staMin.top()==sta.top()) staMin.pop();
