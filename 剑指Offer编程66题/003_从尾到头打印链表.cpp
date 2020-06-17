@@ -20,3 +20,34 @@ public:
         vec.push_back(head->val);
     }
 };
+
+/* ============================================= */
+
+/**
+*  struct ListNode {
+*        int val;
+*        struct ListNode *next;
+*        ListNode(int x) :
+*              val(x), next(NULL) {
+*        }
+*  };
+*/
+class Solution {
+public:
+    vector<int> printListFromTailToHead(ListNode* head) {
+        stack<int> nodes;
+         
+        ListNode* pNode = head;
+        while (pNode != NULL) {
+            nodes.push(pNode->val);
+            pNode = pNode->next;
+        }
+         
+        vector<int> res;
+        while (!nodes.empty()) {
+            res.push_back(nodes.top());
+            nodes.pop();
+        }
+        return res;
+    }
+};
