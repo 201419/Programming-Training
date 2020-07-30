@@ -201,6 +201,60 @@ public:
 // https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/
 // 19. 删除链表的倒数第N个节点
 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        
+        if(!head | !head -> next) return NULL;
+        
+        ListNode* fast = head;
+        ListNode* slow = head;
+        for (int i = 0; i < n; i++) {
+            fast = fast->next;
+        }
+        if (!fast) {
+            return head->next;
+        }
+        while (fast->next) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        slow->next = slow->next->next;
+        return head;
+    }
+};
+
+// ===============
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        
+        if(!head | !head -> next) return NULL;
+        
+        vector<ListNode*> vec;
+        while (head) {
+            vec.push_back(head);
+            head = head->next;
+        }
+        vec.erase(vec.begin()+vec.size()-n);
+        if (vec.size() == 0)  return NULL;
+        for (int i = 0 ; i < vec.size()-1 ; i++) {
+            vec[i]->next = vec[i+1];
+        }
+        vec[vec.size()-1]->next = NULL;
+        return vec[0];
+    }
+};
+
 // ---------------------------------------------------------------------------
 
 // https://leetcode-cn.com/problems/valid-parentheses/
