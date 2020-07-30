@@ -243,3 +243,19 @@ public:
 // https://leetcode-cn.com/problems/regular-expression-matching/
 // 10. 正则表达式匹配
 
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        if (p.empty()) return s.empty();
+
+        bool first_match = !s.empty() && (s[0] == p[0] || p[0] == '.');
+
+        if (p.length() >= 2 && p[1] == '*') {
+            // return isMatch(s,p.substr(2))表示跳过*去匹配
+            // return first_match && isMatch(s.substr(1),p)表示p借助*去匹配s中的重复元素
+            return isMatch(s, p.substr(2)) || (first_match && isMatch(s.substr(1), p));
+        } else {
+            return first_match && isMatch(s.substr(1), p.substr(1));
+        }
+    }
+};
