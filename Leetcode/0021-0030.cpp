@@ -287,6 +287,42 @@ public:
 // https://leetcode-cn.com/problems/implement-strstr/
 // 28. 实现 strStr()
 
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        /* Rabin Karp */
+        
+        if (needle.length() > haystack.length()) return -1;
+
+        // base value for the rolling hash function
+        int a = 26;
+        // modulus value for the rolling hash function to avoid overflow
+        // long long modulus = pow(2, 31);
+        long long modulus = 2147483648;
+        // https://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use
+
+        // compute the hash of strings haystack[:L], needle[:L]
+        long long h = 0, ref_h = 0;
+        for (int i = 0; i < needle.length(); i++) {
+            h = (h * a + (haystack[i] - 'a')) % modulus;
+            ref_h = (ref_h * a + (needle[i] - 'a')) % modulus;
+        }
+        if (h == ref_h) return 0;
+
+        // const value to be used often : a**L % modulus
+        long long aL = 1;
+        for (int i = 0; i < needle.length(); i++) aL = (aL * a) % modulus;  // 修改就会出错
+
+        for (int start = 1; start < haystack.length() - needle.length() + 1; start++) {
+            // compute rolling hash in O(1) time
+            h = ((h * a - (haystack[start-1] - 'a') * aL) 
+                    + (haystack[start+needle.length()-1] - 'a')) % modulus;
+            if (h == ref_h) return start;
+        }
+        return -1;
+    }
+};
+
 // ---------------------------------------------------------------------------
 
 // https://leetcode-cn.com/problems/divide-two-integers/
